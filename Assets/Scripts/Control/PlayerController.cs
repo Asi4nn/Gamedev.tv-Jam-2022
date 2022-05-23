@@ -6,9 +6,12 @@ namespace Game.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] GameObject aliveModel;
+        [SerializeField] GameObject ghostModel;
+
         [SerializeField] int playerNumber;
-        [SerializeField] float speed;
-        [SerializeField] float maxSpeed;
+        [SerializeField] float rotationSpeed;
+        [SerializeField] float movementSpeed;
         public Vector3 direction;
         PlayerState state;
 
@@ -21,7 +24,6 @@ namespace Game.Control
 
         void Update()
         {
-            direction = Vector3.zero;
             foreach (PlayerKeys key in Enum.GetValues(typeof(PlayerKeys)))
             {
                 if (key != PlayerKeys.Interact)
@@ -39,11 +41,23 @@ namespace Game.Control
                     }
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TriggerDeath();
+            }
         }
 
         private void FixedUpdate()
         {
-            rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction.normalized);
+            rb.MovePosition(rb.position + movementSpeed * Time.fixedDeltaTime * direction.normalized);
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                rb.MoveRotation(Quaternion.Lerp(rb.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime));
+                direction = Vector3.zero;
+            }
         }
 
         private void Interact()
@@ -68,6 +82,24 @@ namespace Game.Control
                     direction.x = 1;
                     break;
             }
+        }
+
+        public void TriggerDeath()
+        {
+            if (!state.isAlive) return;
+
+            state.isAlive = false;
+            aliveModel.SetActive(false);
+            ghostModel.SetActive(true);
+        }
+
+        public void TriggerRevive()
+        {
+            if (state.isAlive) return;
+
+            state.isAlive = true;
+            aliveModel.SetActive(true);
+            ghostModel.SetActive(false);
         }
     }
 }
