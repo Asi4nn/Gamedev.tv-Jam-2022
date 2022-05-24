@@ -8,6 +8,7 @@ namespace Game.Control
     {
         [SerializeField] GameObject aliveModel;
         [SerializeField] GameObject ghostModel;
+        [SerializeField] Animator anim;
 
         [SerializeField] int playerNumber;
         [SerializeField] float rotationSpeed;
@@ -16,7 +17,6 @@ namespace Game.Control
         PlayerState state;
 
         Rigidbody rb;
-        Animator anim;
 
         readonly string PlayerLayerName = "Alive";
         readonly string GhostLayerName = "Ghost";
@@ -26,7 +26,6 @@ namespace Game.Control
             state = new PlayerState(true);
 
             rb = GetComponent<Rigidbody>();
-            anim = GetComponent<Animator>();
             gameObject.layer = LayerMask.NameToLayer(PlayerLayerName);
         }
 
@@ -54,6 +53,9 @@ namespace Game.Control
             {
                 TriggerDeath();
             }
+
+            // Set animator params
+            anim.SetFloat("speed", direction.sqrMagnitude);
         }
 
         private void FixedUpdate()
