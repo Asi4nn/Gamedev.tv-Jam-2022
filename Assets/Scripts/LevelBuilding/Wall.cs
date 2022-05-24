@@ -13,6 +13,19 @@ namespace Game.LevelBuilding
     {
         public WallType type;
 
+        private void Awake()
+        {
+            switch (type)
+            {
+                case WallType.Normal:
+                    gameObject.layer = LayerMask.NameToLayer("Alive");
+                    break;
+                case WallType.Ghost:
+                    gameObject.layer = LayerMask.NameToLayer("Ghost");
+                    break;
+            }
+        }
+
         /// <summary>
         /// Method to move the wall as necessary
         /// </summary>

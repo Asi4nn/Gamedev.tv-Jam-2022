@@ -16,10 +16,18 @@ namespace Game.Control
         PlayerState state;
 
         Rigidbody rb;
+        Animator anim;
+
+        readonly string PlayerLayerName = "Alive";
+        readonly string GhostLayerName = "Ghost";
 
         private void Awake()
         {
+            state = new PlayerState(true);
+
             rb = GetComponent<Rigidbody>();
+            anim = GetComponent<Animator>();
+            gameObject.layer = LayerMask.NameToLayer(PlayerLayerName);
         }
 
         void Update()
@@ -91,6 +99,7 @@ namespace Game.Control
             state.isAlive = false;
             aliveModel.SetActive(false);
             ghostModel.SetActive(true);
+            gameObject.layer = LayerMask.NameToLayer(GhostLayerName);
         }
 
         public void TriggerRevive()
@@ -100,6 +109,7 @@ namespace Game.Control
             state.isAlive = true;
             aliveModel.SetActive(true);
             ghostModel.SetActive(false);
+            gameObject.layer = LayerMask.NameToLayer(PlayerLayerName);
         }
     }
 }
