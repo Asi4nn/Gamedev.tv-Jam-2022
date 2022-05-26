@@ -14,18 +14,17 @@ namespace Game.Control
         [SerializeField] float rotationSpeed;
         [SerializeField] float movementSpeed;
         public Vector3 direction;
-        PlayerState state;
 
         Rigidbody rb;
+        PlayerStatusController playerStatusController;
 
         readonly string PlayerLayerName = "Alive";
         readonly string GhostLayerName = "Ghost";
 
         private void Awake()
         {
-            state = new PlayerState(true);
-
             rb = GetComponent<Rigidbody>();
+            playerStatusController = GetComponent<PlayerStatusController>();
             gameObject.layer = LayerMask.NameToLayer(PlayerLayerName);
         }
 
@@ -33,18 +32,20 @@ namespace Game.Control
         {
             foreach (PlayerKeys key in Enum.GetValues(typeof(PlayerKeys)))
             {
-                if (key != PlayerKeys.Interact)
+                if (Bindings.Instance.GetPlayerKey(playerNumber, key))
                 {
-                    if (Bindings.Instance.GetPlayerKey(playerNumber, key))
+                    // Check if movement key
+                    if ((int)key <= 3)
                     {
                         Movement(key);
                     }
-                }
-                else
-                {
-                    if (Bindings.Instance.GetPlayerKey(playerNumber, key))
+                    else if (key == PlayerKeys.Interact && Bindings.Instance.GetPlayerKeyDown(playerNumber, key))
                     {
                         Interact();
+                    }
+                    else if (key == PlayerKeys.TopHat && Bindings.Instance.GetPlayerKeyDown(playerNumber, key))
+                    {
+                        ActivateTopHat();
                     }
                 }
             }
@@ -68,6 +69,26 @@ namespace Game.Control
                 rb.MoveRotation(Quaternion.Lerp(rb.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime));
                 direction = Vector3.zero;
             }
+        }
+
+        public void TriggerDeath()
+        {
+            aliveModel.SetActive(false);
+            ghostModel.SetActive(true);
+
+            playerStatusController.isAlive = false;
+            playerStatusController.UpdateTopHat();
+            gameObject.layer = LayerMask.NameToLayer(GhostLayerName);
+        }
+
+        public void TriggerRevive()
+        {
+            aliveModel.SetActive(true);
+            ghostModel.SetActive(false);
+
+            playerStatusController.isAlive = true;
+            playerStatusController.UpdateTopHat();
+            gameObject.layer = LayerMask.NameToLayer(PlayerLayerName);
         }
 
         private void Interact()
@@ -94,24 +115,19 @@ namespace Game.Control
             }
         }
 
-        public void TriggerDeath()
+        void ActivateTopHat()
         {
-            if (!state.isAlive) return;
+            if (!playerStatusController.UnEquipTopHat()) return;
 
-            state.isAlive = false;
-            aliveModel.SetActive(false);
-            ghostModel.SetActive(true);
-            gameObject.layer = LayerMask.NameToLayer(GhostLayerName);
-        }
-
-        public void TriggerRevive()
-        {
-            if (state.isAlive) return;
-
-            state.isAlive = true;
-            aliveModel.SetActive(true);
-            ghostModel.SetActive(false);
-            gameObject.layer = LayerMask.NameToLayer(PlayerLayerName);
+            if (playerStatusController.isAlive)
+            {
+                TriggerDeath();
+            }
+            else
+            {
+                TriggerRevive();
+            }
+            playerStatusController.isAlive = !playerStatusController.isAlive;
         }
     }
 }

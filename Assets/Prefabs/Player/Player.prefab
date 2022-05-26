@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1446605490673142026}
   - component: {fileID: 2627624436140648591}
   - component: {fileID: 3365715034880226637}
+  - component: {fileID: 5606918798449422714}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4dc6a9cc400bd4b9f8215beec23379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aliveModel: {fileID: 0}
+  ghostModel: {fileID: 0}
+  anim: {fileID: 0}
   playerNumber: 0
   rotationSpeed: 8
   movementSpeed: 8
@@ -79,3 +83,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.7167394, z: 1.5}
   m_Center: {x: 0, y: 0.08916554, z: 0}
+--- !u!114 &5606918798449422714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098510763010309081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e4de3cab56a104a8ae6a37524de7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aliveEquipTopHatPrefab: {fileID: 4470790271072913683, guid: 8871eebfbc2a383439542da9ea110022, type: 3}
+  ghostEquipTopHatPrefab: {fileID: 8497969349862756756, guid: ec27ebe82ba6e244caa8c0a30c5bddc7, type: 3}

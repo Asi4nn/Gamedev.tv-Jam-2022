@@ -3,22 +3,14 @@ using UnityEngine;
 
 namespace Game.Control
 {
-    public struct PlayerBinds
-    {
-        public KeyCode Foward;
-        public KeyCode Backward;
-        public KeyCode Left;
-        public KeyCode Right;
-        public KeyCode Interact;
-    }
-
     public enum PlayerKeys
     {
         Forward,
         Backward,
         Left,
         Right,
-        Interact
+        Interact,
+        TopHat
     }
 
     public class Bindings : MonoBehaviour
@@ -50,7 +42,8 @@ namespace Game.Control
                 { PlayerKeys.Backward, KeyCode.S },
                 { PlayerKeys.Left, KeyCode.A },
                 { PlayerKeys.Right, KeyCode.D },
-                { PlayerKeys.Interact, KeyCode.Space }
+                { PlayerKeys.Interact, KeyCode.Space },
+                { PlayerKeys.TopHat, KeyCode.F },
             };
 
             PlayerTwo = new Dictionary<PlayerKeys, KeyCode>
@@ -59,7 +52,8 @@ namespace Game.Control
                 { PlayerKeys.Backward, KeyCode.DownArrow },
                 { PlayerKeys.Left, KeyCode.LeftArrow },
                 { PlayerKeys.Right, KeyCode.RightArrow },
-                { PlayerKeys.Interact, KeyCode.Return }
+                { PlayerKeys.Interact, KeyCode.Return },
+                { PlayerKeys.TopHat, KeyCode.DoubleQuote }
             };
 
             Pause = KeyCode.Escape;
