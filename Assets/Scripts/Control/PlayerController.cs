@@ -1,9 +1,13 @@
 using Game.Core;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Control
 {
+    [Serializable]
+    public class InteractEvent : UnityEvent<GameObject> { }
+
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] GameObject aliveModel;
@@ -20,6 +24,7 @@ namespace Game.Control
 
         readonly string PlayerLayerName = "Alive";
         readonly string GhostLayerName = "Ghost";
+        readonly float interactRadius = 1.5f;
 
         private void Awake()
         {
@@ -39,20 +44,19 @@ namespace Game.Control
                     {
                         Movement(key);
                     }
-                    else if (key == PlayerKeys.Interact && Bindings.Instance.GetPlayerKeyDown(playerNumber, key))
+                }
+
+                if (Bindings.Instance.GetPlayerKeyDown(playerNumber, key))
+                {
+                    if (key == PlayerKeys.Interact)
                     {
                         Interact();
                     }
-                    else if (key == PlayerKeys.TopHat && Bindings.Instance.GetPlayerKeyDown(playerNumber, key))
+                    else if (key == PlayerKeys.TopHat)
                     {
                         ActivateTopHat();
                     }
                 }
-            }
-
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                TriggerDeath();
             }
 
             // Set animator params
@@ -93,7 +97,31 @@ namespace Game.Control
 
         private void Interact()
         {
-            throw new NotImplementedException();
+            IInteractable interactHit = GetInteractHit();
+            if (interactHit != null)
+            {
+                interactHit.Interact(gameObject);
+            }
+        }
+
+        private IInteractable GetInteractHit()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, interactRadius, Vector3.up, 0);
+
+            IInteractable closestHit = null;
+            float hitDistance = Mathf.Infinity;
+
+            foreach (RaycastHit hit in hits)
+            {
+                IInteractable i = hit.transform.GetComponent<IInteractable>();
+                if (i != null && hit.distance < hitDistance)
+                {
+                    hitDistance = hit.distance;
+                    closestHit = i;
+                }
+            }
+
+            return closestHit;
         }
 
         void Movement(PlayerKeys key)
