@@ -97,3 +97,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aliveEquipTopHatPrefab: {fileID: 4470790271072913683, guid: 8871eebfbc2a383439542da9ea110022, type: 3}
   ghostEquipTopHatPrefab: {fileID: 8497969349862756756, guid: ec27ebe82ba6e244caa8c0a30c5bddc7, type: 3}
+  isAlive: 0
+  hasTopHat: 0
