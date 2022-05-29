@@ -53,7 +53,7 @@ namespace Game.Control
                 { PlayerKeys.Left, KeyCode.LeftArrow },
                 { PlayerKeys.Right, KeyCode.RightArrow },
                 { PlayerKeys.Interact, KeyCode.Return },
-                { PlayerKeys.TopHat, KeyCode.DoubleQuote }
+                { PlayerKeys.TopHat, KeyCode.Quote }
             };
 
             Pause = KeyCode.Escape;

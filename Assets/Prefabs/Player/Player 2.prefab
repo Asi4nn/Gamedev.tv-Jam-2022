@@ -61,6 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0529bed174aa85c4591afe4340c54e93, type: 3}
+--- !u!1 &1251418722358512549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4211944456594683968, guid: 0529bed174aa85c4591afe4340c54e93, type: 3}
+  m_PrefabInstance: {fileID: 3111489917762647013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &5949463317192645238 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8772597308304894355, guid: 0529bed174aa85c4591afe4340c54e93, type: 3}
@@ -154,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 1446605490673142026, guid: c9dfa99d109047e439ccc824ee769a3f, type: 3}
       propertyPath: aliveModel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1251418722358512549}
     - target: {fileID: 1446605490673142026, guid: c9dfa99d109047e439ccc824ee769a3f, type: 3}
       propertyPath: ghostModel
       value: 

@@ -12,8 +12,12 @@ namespace Game.LevelBuilding
     public class Switch : MonoBehaviour, IInteractable
     {
         public ObjectType type;
+
+        // Subscribe events to happen to these Unity events in the inspect
         [SerializeField] SwitchEvent activate;
         [SerializeField] SwitchEvent deactivate;
+
+
         [SerializeField] TextMeshProUGUI text;
         [SerializeField] Animator anim;
 
@@ -48,12 +52,9 @@ namespace Game.LevelBuilding
 
         void DrawActivationUI(GameObject player)
         {
-            text.gameObject.SetActive(true);
-        }
+            // TODO: Modify text to display the activation button
 
-        public void SwitchTest(GameObject player)
-        {
-            Debug.Log("switch hit by " + player.name);
+            text.gameObject.SetActive(true);
         }
 
         private void ToggleSwitch(GameObject player)
