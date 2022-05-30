@@ -1,4 +1,5 @@
 using Game.Control;
+using Game.LevelManagement;
 using UnityEngine;
 
 namespace Game.UI
@@ -37,6 +38,8 @@ namespace Game.UI
         {
             levelFinishMenu.SetActive(true);
             GetComponent<UIControlRemover>().DisableControl();
+
+            LevelManager.Instance.SetLevelComplete(levelNum);
         }
     }
 }
