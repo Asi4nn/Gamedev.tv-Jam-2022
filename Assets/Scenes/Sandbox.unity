@@ -403,25 +403,17 @@ MonoBehaviour:
   - moveTime: 5
     rotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
     destination: {x: 5, y: 5, z: -3}
---- !u!1 &852684790 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4394829941774049669, guid: 2061d868412744d4998821042e53d5db, type: 3}
+--- !u!114 &852684794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1905362367665506359, guid: 2061d868412744d4998821042e53d5db, type: 3}
   m_PrefabInstance: {fileID: 442393984}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &852684794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852684790}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 173602e4f242ace4b888b118687fb8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 1
-  levelStatuses: 00
 --- !u!4 &1585438695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8477704459650943723, guid: 574d228ab547662429f3e416807e9d2a, type: 3}
@@ -617,7 +609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3375253767374226664, guid: 0388bfb64c4c8f340be61845789560ed, type: 3}
       propertyPath: LevelCompleted.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3375253767374226664, guid: 0388bfb64c4c8f340be61845789560ed, type: 3}
       propertyPath: LevelCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Mode

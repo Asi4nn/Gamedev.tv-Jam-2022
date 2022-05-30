@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Core
 {
-    public class PersistantObject : MonoBehaviour
+    public class PersistentObject : MonoBehaviour
     {
-        public static PersistantObject Instance;
+        public static PersistentObject Instance;
 
         private void Awake()
         {

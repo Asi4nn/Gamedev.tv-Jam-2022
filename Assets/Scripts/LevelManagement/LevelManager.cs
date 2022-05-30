@@ -1,31 +1,33 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class LevelManager : MonoBehaviour
+namespace Game.LevelManagement
 {
-    public static LevelManager Instance;
-
-    public int numLevels;
-    public bool[] levelStatuses;
-
-    private void Awake()
+    public class LevelManager : MonoBehaviour
     {
-        if (Instance != null)
+        public static LevelManager Instance;
+
+        public int numLevels;
+        public bool[] levelStatuses;
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
         }
 
-        Instance = this;
-    }
+        private void Start()
+        {
+            levelStatuses = new bool[numLevels];
+        }
 
-    private void Start()
-    {
-        levelStatuses = new bool[numLevels];
-    }
-
-    public void SetLevelComplete(int level)
-    {
-        levelStatuses[level - 1] = true;
+        public void SetLevelComplete(int level)
+        {
+            levelStatuses[level - 1] = true;
+        }
     }
 }
