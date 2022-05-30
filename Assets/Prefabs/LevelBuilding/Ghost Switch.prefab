@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost Switch
       objectReference: {fileID: 0}
+    - target: {fileID: 5804192027289711213, guid: 4a0fcf42cfcb1054d893934108a6a3b7, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5804192027289711214, guid: 4a0fcf42cfcb1054d893934108a6a3b7, type: 3}
       propertyPath: m_RootOrder
       value: 0
