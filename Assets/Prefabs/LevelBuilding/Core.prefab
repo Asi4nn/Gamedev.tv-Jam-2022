@@ -167,6 +167,10 @@ MonoBehaviour:
   offset: {x: 0, y: 14, z: -3}
   player1: {fileID: 4734336102951550178}
   player2: {fileID: 8062008228729268262}
+  zoomInViewportThreshold: 0.4
+  zoomOutViewportThreshold: 0.45
+  zoomInSpeedFactor: 0.01
+  zoomOutSpeedFactor: 0.05
 --- !u!1 &8280482414819829838
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +313,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.4339623, g: 0.31643087, b: 0, a: 1}
+  m_Color: {r: 0.5471698, g: 0.4878768, b: 0.32778567, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
