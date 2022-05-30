@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.LevelManagement
 {
@@ -28,6 +29,25 @@ namespace Game.LevelManagement
         public void SetLevelComplete(int level)
         {
             levelStatuses[level - 1] = true;
+        }
+
+        public void LoadScene(int level)
+        {
+            SceneManager.LoadScene(level);
+        }
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void LoadNextLevel()
+        {
+            if (SceneManager.GetActiveScene().buildIndex == numLevels)
+            {
+                LoadScene(0);
+            }
+            LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

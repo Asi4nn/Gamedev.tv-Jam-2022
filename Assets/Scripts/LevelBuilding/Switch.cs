@@ -38,8 +38,7 @@ namespace Game.LevelBuilding
             {
                 if (hit.transform.CompareTag("Player"))
                 {
-                    bool playerIsAlive = hit.transform.GetComponent<PlayerStatusController>().isAlive;
-                    if (type == ObjectType.Hybrid || type == ObjectType.Ghost && !playerIsAlive || type == ObjectType.Normal && playerIsAlive)
+                    if (PlayerInteractable(hit.transform.gameObject))
                         DrawActivationUI(hit.transform.gameObject);
                 }
             }
@@ -59,6 +58,8 @@ namespace Game.LevelBuilding
 
         private void ToggleSwitch(GameObject player)
         {
+            if (!PlayerInteractable(player)) return;
+
             if (active)
             {
                 active = false;
@@ -73,6 +74,14 @@ namespace Game.LevelBuilding
 
             }
         }
+
+        private bool PlayerInteractable(GameObject player)
+        {
+            bool playerIsAlive = player.GetComponent<PlayerStatusController>().isAlive;
+
+            return type == ObjectType.Hybrid || type == ObjectType.Ghost && !playerIsAlive || type == ObjectType.Normal && playerIsAlive;
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
