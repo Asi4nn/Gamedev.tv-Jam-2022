@@ -145,7 +145,7 @@ namespace Game.Control
 
         void ActivateTopHat()
         {
-            if (!playerStatusController.UnEquipTopHat()) return;
+            if (!playerStatusController.UnequipTopHat()) return;
 
             if (playerStatusController.isAlive)
             {
@@ -155,7 +155,6 @@ namespace Game.Control
             {
                 TriggerRevive();
             }
-            playerStatusController.isAlive = !playerStatusController.isAlive;
         }
     }
 }

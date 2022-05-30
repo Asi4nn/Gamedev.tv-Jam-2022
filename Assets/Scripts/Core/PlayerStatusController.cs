@@ -36,7 +36,7 @@ namespace Game.Core
             return true;
         }
 
-        public bool UnEquipTopHat()
+        public bool UnequipTopHat()
         {
             if (!hasTopHat) return false;
 
@@ -46,11 +46,15 @@ namespace Game.Core
             return true;
         }
 
+        /// <summary>
+        /// Update top hat model depending on player's alive status
+        /// </summary>
+        /// <returns>Boolean representing if the player has a top hat</returns>
         public bool UpdateTopHat()
         {
             if (!hasTopHat) return false;
 
-            UnEquipTopHat();
+            UnequipTopHat();
             EquipTopHat();
 
             return true;
